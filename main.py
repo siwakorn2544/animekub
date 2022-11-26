@@ -1,5 +1,7 @@
 from flask import Flask, jsonify
 from flask_cors import CORS
+# from flask import request
+import requests
 
 # configuration
 DEBUG = True
@@ -8,15 +10,15 @@ DEBUG = True
 app = Flask(__name__)
 app.config.from_object(__name__)
 
-
+response = requests.get("https://api.jikan.moe/v4/anime/")
  
 # enable CORS
 CORS(app, resources={r'/*': {'origins': '*'}})
 
 
-@app.route('/ping', methods=['GET'])
+@app.route('/animekub', methods=['GET'])
 def ping_pong():
-    return jsonify('pongHello!')
+    return jsonify(response.json())
 
 
  
