@@ -1,38 +1,65 @@
 <template>
     <b-container>
         <h1>HelloWorld1</h1>
-        <div class="mr-5">{{ msg }}</div>
-        <b-button size="sm" variant="success" @click="toggle">
-            {{ show ? 'Hide' : 'Show' }} Alert
-        </b-button>
-        <b-alert
-            v-model="show"
-            class="mt-3"
-            dismissible
-            @dismissed="dismissed"
-            >
-            {{ msg }}!
-        </b-alert>
+        <b-card no-body>
+            <b-row>
+                <b-col
+                v-for="(item, index) in animeData"
+                :key="item.mai_id"
+                class="mb-2"
+                >
+                <template #header>
+                    <h4 class="mb-0">Hello World {{ index }}</h4>
+                </template>
+                <b-card-body>
+                    <b-card style="height:100%;">
+                        <b-card-img
+                        :src="item.images.webp.image_url"
+                        img-alt="Card image"
+                        img-top
+                        alt="Image"
+                        class="mb-2 Card_hover">
+                        </b-card-img>
+                        <b-card-title>
+                          {{ item.title }}
+                        </b-card-title>
+                    </b-card>
+                    
+
+                </b-card-body>
+
+                </b-col>
+            </b-row>
+        </b-card>
         
     </b-container>
     
 </template>
 <script>
-import  DATA from '../dtest'
-export default{
+import axios from '../plugin/axios'
+export default {
     name: "mainPage",
     data(){
         return{
             msg: "Hello world Pete",
             show: true,
-            res: DATA
+            animeData:undefined
         }
+    }
+    ,
+    mounted()
+    {
+            axios.get('/anime').then((res)=>{
+                console.log(res)
+                this.animeData = res.data.data
+                console.log(this.animeData)
+            })
+            .catch((err)=>{
+                console.log(err)
+            })
     },
     methods: {
-        toggle() {
-        console.log('Toggle button clicked')
-        this.show = !this.show
-        },
+
     }
 }
 </script>
