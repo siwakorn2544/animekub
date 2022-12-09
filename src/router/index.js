@@ -5,7 +5,7 @@ Vue.use(VueRouter)
 
 const routes = [    
     {
-        path: '/',
+        path: '/:current_page',
         name: 'home',
         component: () => import('../views/mainPage.vue')
     },

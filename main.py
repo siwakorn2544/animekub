@@ -20,7 +20,7 @@ CORS(app, resources={r'/*': {'origins': '*'}})
 
 
 @app.route('/animekub', methods=['POST'])
-def ping_pong():
+def insert_com():
     cursor = mysql.connection.cursor()
     cursor.execute(''' INSERT INTO comment (animeid, personname, comment)VALUES(%s,%s,%s)''',(1,'Peng','สวยพี่น้อง'))
     mysql.connection.commit()
