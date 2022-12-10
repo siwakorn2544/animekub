@@ -3,7 +3,7 @@
     fluid="xl">
         <b-row>
             <b-col>
-                <h1>{{animedata.title_english}}</h1>
+                <h1>{{animedata.title}}</h1>
             </b-col>
         </b-row>
         <b-row>
