@@ -1,15 +1,42 @@
 <template>
-    <div>
-        <h1>HelloWorld2</h1>
-        <h2> {{ msg }} </h2>
-    </div>
+    <b-container 
+    fluid="xl">
+        <b-row>
+            <b-col>
+                <h1>{{animedata.title_english}}</h1>
+            </b-col>
+        </b-row>
+        <b-row>
+            <b-col>
+                <commentVue/>
+            </b-col>
+        </b-row>
+    </b-container>
+    
 </template>
 <script>
-export default{
+import axios from '../plugin/axios';
+import commentVue from './comment.vue';
+export default {
+    components:{
+        commentVue
+    },
     name : "deailPage",
     data(){
         return{
-            msg: "Hello world Pe te"
+            animedata:{}
+        }
+    },
+    created(){
+        this.getDetailAnime(this.$route.params.id);
+    },
+    methods:{
+        getDetailAnime(id){
+            axios.get(`/anime/${id}/full`).then((res)=>{
+                console.log(res.data);
+                this.animedata = res.data.data
+                console.log(this.animedata);
+            })
         }
     }
 }

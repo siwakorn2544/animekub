@@ -1,5 +1,6 @@
 <template>
-    <b-container>
+    <b-container
+    fluid="xl">
         <h1>Welcome</h1>
             <b-row>
                 <b-col
@@ -76,7 +77,7 @@ export default {
                 console.log(res.data)
                 this.selected_year = res.data.data
                 this.selected_season = res.data.data
-                console.log(this.selected_year)
+                // console.log(this.selected_year)
             }).catch((err)=>{
                 console.log(err)
             })
@@ -107,7 +108,10 @@ export default {
             }).catch((err)=>{
                 console.log('Error from linkGen '+err)
             })
-      },
+        },
+        viewDetail(mal_id){
+            this.$router.push({path: `/detailpage/${mal_id}`})
+        },
 
     }
 }

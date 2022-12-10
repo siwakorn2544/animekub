@@ -10,7 +10,7 @@ const routes = [
         component: () => import('../views/mainPage.vue')
     },
     {
-        path: '/detailpage',
+        path: '/detailpage/:id',
         name: 'detailpage',
         component: () => import('../views/detailPage.vue')
     },
