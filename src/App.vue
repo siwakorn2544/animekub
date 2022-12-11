@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <b-navbar variant="faded" type="light" class="bg-info">
-    <b-navbar-brand tag="h1" class="ps-5" variant="primary">Home</b-navbar-brand>
+    <b-navbar-brand tag="h1" class="ps-5" variant="primary" to="/" >{{ text }}</b-navbar-brand>
+
   </b-navbar>
     <router-view :key="$route.fullPath" />
   </div>
@@ -12,14 +13,10 @@ export default {
   name: 'App',
   data() {
     return{
-      
+      clickgo: false,
+      text: 'Home',
     }
   }
 }
 </script>
 
-<style>
-/* body {
-  background-image: url('https://images.pexels.com/photos/1323550/pexels-photo-1323550.jpeg');
-} */
-</style>
