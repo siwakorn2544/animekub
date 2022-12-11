@@ -3,9 +3,9 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-const routes = [    
+const routes = [
     {
-        path: '/:current_page',
+        path: '/main/:current_page/:type',
         name: 'home',
         component: () => import('../views/mainPage.vue')
     },
@@ -13,6 +13,11 @@ const routes = [
         path: '/detailpage/:id',
         name: 'detailpage',
         component: () => import('../views/detailPage.vue')
+    },
+    {
+        path: '/',
+        name: '',
+        component: () => import("../views/main.vue")
     },
 ]
 

@@ -3,111 +3,142 @@
     fluid="xl">
         <h1>Welcome</h1>
             <b-row>
-                <b-col
-                class="col-3"
-                v-for="item in animeData"
-                :key="item.mal_id"
-                >
-                    <b-card 
-                    no-body
-                    img-top
-                    :img-src="item.images.webp.large_image_url"
-                    img-alt="Card image"
-                    style="height: fit-content;"
-                    class="mb-4"
-                    >
-                    <b-card-title>
-                        <h4 class="mt-5">{{item.title}}</h4>
-                    </b-card-title>
-                    
-                    <b-card-footer>
-                        <b-button @click="viewDetail(item.mal_id)" variant="primary">See details </b-button>
-                    </b-card-footer>
-
-                    </b-card>
-
+                <b-col class="mb-3 col-10">
+                    <b-input class="mb-2" v-model="name" placeholder="Search for an anime"></b-input>
+                </b-col>
+                <b-col>
+                    <b-button class="p-2 me-5" variant="outline-warning" @click="getAnimebyName()">Search</b-button>
                 </b-col>
             </b-row>
-        <div class="overflow-auto">
-            <b-pagination-nav
-            v-del="current_page"
-            :number-of-pages="this.num"
-            base-url="/"
-            first-text="First"
-            prev-text="Prev"
-            next-text="Next"
-            last-text="Last">
-            </b-pagination-nav>
-        </div>
+            <b-row id="animeRow">
+                   <b-card no-body>
+                            <b-row>
+                                <b-col 
+                                    class="col-3"
+                                    v-for="item in animeData"
+                                    :key="item.mal_id"
+                                >
+                                <b-card 
+                                no-body
+                                img-top
+                                :img-src="item.images.webp.large_image_url"
+                                img-alt="Card image"
+                                style="height: fit-content;"
+                                class="mb-4"
+                                >
+                                <b-card-title>
+                                    <h4 class="mt-5">{{item.title}}</h4>
+                                </b-card-title>
+                            
+                                <b-card-footer>
+                                    <b-button @click="viewDetail(item.mal_id)" variant="primary">See details </b-button>
+                                </b-card-footer>
+                                </b-card>
+                            </b-col>
+                            </b-row>
+                            <div class="overflow-auto">
+                                <b-pagination-nav
+                                :link-gen="linkGen"
+                                :number-of-pages="this.num"
+                                base-url="/"
+                                first-text="First"
+                                prev-text="Prev"
+                                next-text="Next"
+                                last-text="Last">
+                                </b-pagination-nav>
+                            </div>
+                   </b-card>
+            </b-row>
 
     </b-container>
     
 </template>
 <script>
-
 import axios from '../plugin/axios'
 export default {
     name: "mainPage",
-
     data(){
         return{
-            selected_year:[],
-            selected_season:{},
             show: true,
-            animeData:{},
+            animeData:[],
+            loadseasonNow: false,
+            loadAnimeByName: false,
             hasnextpage:false,
             current_page:1,
             per_page:25,
             row: 0,
-            num: 1,
+            num: null,
+            name:'',
+            count: 0
         }
     }
     ,
     mounted()
     {
-        this.getSeasonsNow()
-        console.log(this.$route)
-        this.linkGen(this.$route.params.current_page)
-        this.getSeasons()
+        if(this.$route.params.type == "byName"){
+            this.getAnimebyName()
+        }else{
+            this.getSeasonsNow()
+        }
     },
     methods: {
-        getSeasons(){
-            axios.get(`/seasons`)
+        getAnimebyName(){
+            let result = null
+            if (this.name == "") {
+                result = localStorage.getItem("name")
+            }
+            if(result != null || result == ""){
+                this.name = result
+            }
+            if (this.name == ""){
+                this.animeData = []
+                alert("plaese type something")
+            }
+            else{
+            this.loadAnimeByName = true
+            axios.get(`/anime?letter=${this.name}&page=${this.$route.params.current_page}`)
             .then((res)=>{
+                this.animeData = []
                 console.log(res.data)
-                this.selected_year = res.data.data
-                this.selected_season = res.data.data
-                // console.log(this.selected_year)
-            }).catch((err)=>{
-                console.log(err)
-            })
-        },
-        getSeasonsNow(){
-            axios.get(`/seasons/now?page${this.current_page}`)
-            .then((res)=>{
-                console.log(res)
+                this.loadseasonNow = false
+                this.loadAnimeByName = true
                 this.hasnextpage = res.data.pagination.has_next_page
                 this.current_page = res.data.pagination.current_page
                 this.row = res.data.pagination.items.total
                 this.per_page = res.data.pagination.items.per_page
                 this.animeData = res.data.data
                 this.num = Math.ceil(this.row / this.per_page)
-                console.log(this.num)
+            }).catch((err)=>{
+                console.log(err)
+            })
+            localStorage.setItem("name", this.name)
+            this.count = 1;
+            }
+        },
+        getSeasonsNow(){
+            axios.get(`/seasons/now?page=${this.$route.params.current_page}`)
+            .then((res)=>{
+                // console.log(res)
+                this.loadAnimeByName = false
+                this.hasnextpage = res.data.pagination.has_next_page
+                this.current_page = res.data.pagination.current_page
+                this.row = res.data.pagination.items.total
+                this.per_page = res.data.pagination.items.per_page
+                this.animeData = res.data.data
+                this.num = Math.ceil(this.row / this.per_page)
+                // console.log(this.num)
+                this.loadseasonNow = true
             })
             .catch((err)=>{
                 console.log(err)
             })
         },
         linkGen(pageNum) {
-            axios.get(`/seasons/now?page=${pageNum}`).then((res)=>{
-                this.hasnextpage = res.data.pagination.has_next_page
-                this.current_page = res.data.pagination.current_page
-                this.row = res.data.pagination.items.total
-                this.per_page = res.data.pagination.items.per_page
-                this.animeData = res.data.data
-            }).catch((err)=>{
-                console.log('Error from linkGen '+err)
-            })
+            if(this.count == 1){
+                return "/main"+"/"+pageNum+"/"+"byName"
+            }else{
+                return "/main"+"/"+pageNum+"/"+this.$route.params.type
+            }
         },
         viewDetail(mal_id){
             this.$router.push({path: `/detailpage/${mal_id}`})

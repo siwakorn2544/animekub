@@ -3,12 +3,12 @@
     fluid="xl">
         <b-row>
             <b-col>
-                <h1>{{animedata.title}}</h1>
+                <h1>{{animedata.title}} {{animedata.mal_id}}</h1>
             </b-col>
         </b-row>
         <b-row>
             <b-col>
-                <commentVue/>
+                <commentVue :animedata="animedata.mal_id"/>
             </b-col>
         </b-row>
     </b-container>
@@ -21,17 +21,19 @@ export default {
     components:{
         commentVue
     },
-    name : "deailPage",
+    name : "detailpage",
     data(){
         return{
             animedata:{}
         }
     },
     created(){
+        console.log("Hello");
         this.getDetailAnime(this.$route.params.id);
     },
     methods:{
         getDetailAnime(id){
+            console.log(id)
             axios.get(`/anime/${id}/full`).then((res)=>{
                 console.log(res.data);
                 this.animedata = res.data.data
