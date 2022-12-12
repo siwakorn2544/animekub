@@ -1,33 +1,34 @@
 <template>
-    <div class="row">
+    <div class="row mt-4">
         <div class="col-12">
-            <span>Comment</span>
+            <p class="my-2">Comment</p>
             <b-form-textarea
-            id="textarea"
-            v-model="text"
-            placeholder="Enter something..."
-            rows="2"
-            max-rows="5"
-        ></b-form-textarea>
+                id="textarea"
+                v-model="text"
+                placeholder="Enter something ..."
+                rows="2"
+                max-rows="5"
+            ></b-form-textarea>
         </div>
-        <div class="col-6">
-            <span for="b-input1">Name</span>
-            <b-input id="b-input1" v-model="name" placeholder="input your Name"/>
+        <div class="col-6 mt-3">
+            <p class="my-2" for="b-input1">Name</p>
+            <div class="input-group">
+                <b-input class="form-control" id="b-input1" v-model="name" placeholder="Name ..."/>
+                <b-button variant="outline-primary"
+                    @click="postComment()"
+                    >
+                    Submit
+                </b-button>
+            </div>
         </div>
-        <div class="col-2">
-            <b-button class="mt-4" variant="outline-primary"
-            @click="postComment()"
-            >
-            Submit
-        </b-button>
-        </div>
-    <pre class="mt-3 mb-0">{{ text }}</pre>
+    <pre class="m-3 mb-0">{{ text }}</pre>
     <div class="col-12">
         <b-card no-body 
+        class="mt-3" 
        >
             <div v-for="i in dataComment" :key="i[0]">
-                <b-card :title="i[2]"  >
-                <div class="bg-secondary text-light">
+                <b-card :title="i[2]" class="m-2" >
+                <div class="text-dark">
                     {{i[3]}}
                 </div>
                 </b-card>
@@ -49,16 +50,21 @@ export default {
             name:"",
             text:"",
             animeid_1: this.animedata,
-            dataComment:[]
+            dataComment:[],
+            chk:true
         }
     },
     created(){
         console.log("id is comming", this.animedata)
-        // this.getComment(this.animedata)
+        this.getComment(this.animedata)
     },
     watch:{
         animedata() {
             console.log("Update animedata:", this.animedata)
+            this.getComment(this.animedata)
+            this.chk = true
+        },
+        postComment(){
             this.getComment(this.animedata)
         }
     },
@@ -79,6 +85,8 @@ export default {
             }).catch((err)=>{
                 console.log(err)
             })
+            this.text =""
+            this.name =""
         },
         getComment(animeid){
             axios.get(`http://127.0.0.1:5000/getcomment/${animeid}`)

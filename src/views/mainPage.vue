@@ -1,18 +1,20 @@
 <template>
     <b-container
     fluid="xl">
-        <h1>Welcome</h1>
-            <b-row>
+        <h1 class="mt-5">Welcome</h1>
+            <b-row class="mt-5">
                 <b-col class="mb-3 col-10">
-                    <b-input class="mb-2" v-model="name" placeholder="Search for an anime"></b-input>
+                    <b-input class="mb-2" v-model="name" placeholder="Search ..."></b-input>
                 </b-col>
-                <b-col>
-                    <b-button class="p-2 me-5" variant="outline-warning" @click="getAnimebyName()">Search</b-button>
+                <b-col class=" col-2">
+                    <b-button class="form-control" variant="outline-primary" @click="getAnimebyName()">Search</b-button>
                 </b-col>
             </b-row>
             <b-row id="animeRow">
                    <b-card no-body>
-                            <b-row>
+                            <b-row
+                                class="mt-3"
+                            >
                                 <b-col 
                                     class="col-3"
                                     v-for="item in animeData"
@@ -24,19 +26,22 @@
                                 :img-src="item.images.webp.large_image_url"
                                 img-alt="Card image"
                                 style="height: fit-content;"
+                                img-height="450"
                                 class="mb-4"
                                 >
-                                <b-card-title>
-                                    <h4 class="mt-5">{{item.title}}</h4>
+                                <b-card-title
+                                   style="height: 100px"
+                                >
+                                    <h5 class="mt-3 ms-3">{{item.title}}</h5>
                                 </b-card-title>
                             
                                 <b-card-footer>
-                                    <b-button @click="viewDetail(item.mal_id)" variant="primary">See details </b-button>
+                                    <b-button @click="viewDetail(item.mal_id)" variant="primary">See Details</b-button>
                                 </b-card-footer>
                                 </b-card>
                             </b-col>
                             </b-row>
-                            <div class="overflow-auto">
+                            <div class="d-flex justify-content-end me-4">
                                 <b-pagination-nav
                                 :link-gen="linkGen"
                                 :number-of-pages="this.num"

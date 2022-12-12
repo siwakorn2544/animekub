@@ -11,10 +11,10 @@ DEBUG = True
 app = Flask(__name__)
 app.config.from_object(__name__)
 # connect database
-app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_HOST'] = 'animekub.cf5jetjghnfd.us-east-1.rds.amazonaws.com'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'Pete040101'
-app.config['MYSQL_DB'] = 'comment_animekub'
+app.config['MYSQL_DB'] = 'animekub'
 mysql = MySQL(app)
 # enable CORS
 # CORS(app, resources={r'/*': {'origins': '*'}})
