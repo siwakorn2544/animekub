@@ -20,6 +20,11 @@ npm run build
 npm run lint
 ```
 
+### Run backend python
+```
+cd Backend
+py main.py
+```
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 "# animekub" 
