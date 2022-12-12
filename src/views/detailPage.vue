@@ -2,8 +2,9 @@
     <b-container
         fluid="xl"
         style="height: 100vh"
+        v-if="check"
     >
-        <b-row class="mt-5" v-if="check">
+        <b-row class="mt-5">
             <b-col class="col-9">
                 <h1>{{animedata.title}} ({{animedata.mal_id}})</h1>
                 <h6>{{animedata.title_english}}</h6>
