@@ -1,8 +1,15 @@
 from flask import Flask,request,jsonify
 from flask_cors import CORS
 from flask_mysqldb import MySQL
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
 
+MYSQLHOST=os.getenv("MYSQLHOST")
+MYSQLUSER=os.getenv("MYSQLUSER")
+MYSQLPASSWORD=os.getenv("MYSQLPASSWORD")
+MYSQL_DB=os.getenv("MYSQL_DB")
 
 # configuration
 DEBUG = True
@@ -11,10 +18,10 @@ DEBUG = True
 app = Flask(__name__)
 app.config.from_object(__name__)
 # connect database
-app.config['MYSQL_HOST'] = 'animekub.cf5jetjghnfd.us-east-1.rds.amazonaws.com'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = '********'
-app.config['MYSQL_DB'] = 'animekub'
+app.config['MYSQL_HOST'] = MYSQLHOST
+app.config['MYSQL_USER'] = MYSQLUSER
+app.config['MYSQL_PASSWORD'] = MYSQLPASSWORD
+app.config['MYSQL_DB'] = MYSQL_DB
 mysql = MySQL(app)
 # enable CORS
 # CORS(app, resources={r'/*': {'origins': '*'}})
