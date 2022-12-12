@@ -3,7 +3,7 @@
         fluid="xl"
         style="height: 100vh"
     >
-        <b-row class="mt-5">
+        <b-row class="mt-5" v-if="check">
             <b-col class="col-9">
                 <h1>{{animedata.title}} ({{animedata.mal_id}})</h1>
                 <h6>{{animedata.title_english}}</h6>
