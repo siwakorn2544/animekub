@@ -1,25 +1,25 @@
 <template>
-    <div class="row">
+    <div class="row mt-4">
         <div class="col-12">
-            <span>Comment</span>
+            <p class="my-2">Comment</p>
             <b-form-textarea
-            id="textarea"
-            v-model="text"
-            placeholder="Enter something..."
-            rows="2"
-            max-rows="5"
-        ></b-form-textarea>
+                id="textarea"
+                v-model="text"
+                placeholder="Enter something ..."
+                rows="2"
+                max-rows="5"
+            ></b-form-textarea>
         </div>
-        <div class="col-6">
-            <span for="b-input1">Name</span>
-            <b-input id="b-input1" v-model="name" placeholder="input your Name"/>
-        </div>
-        <div class="col-2">
-            <b-button class="mt-4" variant="outline-primary"
-            @click="postComment()"
-            >
-            Submit
-        </b-button>
+        <div class="col-6 mt-3">
+            <p class="my-2" for="b-input1">Name</p>
+            <div class="input-group">
+                <b-input class="form-control" id="b-input1" v-model="name" placeholder="Name ..."/>
+                <b-button variant="outline-primary"
+                    @click="postComment()"
+                    >
+                    Submit
+                </b-button>
+            </div>
         </div>
     <pre class="mt-3 mb-0">{{ text }}</pre>
     <div class="col-12">
