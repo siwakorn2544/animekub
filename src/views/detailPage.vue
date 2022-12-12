@@ -5,7 +5,9 @@
     >
         <b-row class="mt-5">
             <b-col class="col-9">
-                <h1>{{animedata.title}} {{animedata.mal_id}}</h1>
+                <h1>{{animedata.title}} ({{animedata.mal_id}})</h1>
+                <h6>{{animedata.title_english}}</h6>
+                <h6>{{animedata.title_japanese}}</h6>
             </b-col>
             <b-col class="col-3">
                 <div class="d-flex justify-content-between">
@@ -17,6 +19,46 @@
                         class="progress-bar bg-warning"
                         :style="{width: (animedata.score*10)+'%'}"></div>
                 </div>
+            </b-col>
+        </b-row>
+        <b-row class="mt-3">
+            <b-col class="col-2">
+                <b-img
+                    :src="animedata.images.webp.image_url"
+                />
+            </b-col>
+            <b-col class="col-4 px-5 text-start">
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        SEASON
+                        <span class="badge bg-primary rounded-pill text-uppercase">{{animedata.season}}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        THEMES
+                        <div>
+                            <span
+                                class="badge bg-primary rounded-pill text-uppercase ms-1"
+                                v-for="item in animedata.themes"
+                                :key="item.mal_id"
+                            >{{item.name}}</span><br>
+                        </div>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        STUDIO
+                        <div>
+                            <span 
+                                class="badge bg-primary rounded-pill text-uppercase ms-1"
+                                v-for="item in animedata.studios"
+                                :key="item.mal_id"
+                            >{{item.name}}</span><br>
+                        </div>
+                    </li>
+                </ul>
+            </b-col>
+            <b-col class="col-6 ps-3 border-start">
+                <p>
+                    {{animedata.synopsis}}
+                </p>
             </b-col>
         </b-row>
         <b-row>
