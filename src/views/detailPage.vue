@@ -1,9 +1,22 @@
 <template>
-    <b-container 
-    fluid="xl">
-        <b-row>
-            <b-col>
+    <b-container
+        fluid="xl"
+        style="height: 100vh"
+    >
+        <b-row class="mt-5">
+            <b-col class="col-9">
                 <h1>{{animedata.title}} {{animedata.mal_id}}</h1>
+            </b-col>
+            <b-col class="col-3">
+                <div class="d-flex justify-content-between">
+                    <div>Rating</div>
+                    <div>{{animedata.score}}</div>
+                </div>
+                <div class="progress mt-2">
+                    <div
+                        class="progress-bar bg-warning"
+                        :style="{width: (animedata.score*10)+'%'}"></div>
+                </div>
             </b-col>
         </b-row>
         <b-row>
