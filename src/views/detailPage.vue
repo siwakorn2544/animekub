@@ -25,7 +25,6 @@
             </b-col>
         </b-row>
     </b-container>
-    
 </template>
 <script>
 import axios from '../plugin/axios';
@@ -37,16 +36,25 @@ export default {
     name : "detailpage",
     data(){
         return{
-            animedata:{}
+            animedata:{},
+            check : false
         }
     },
     created(){
-        console.log("Hello");
+        // console.log("Hello");
         this.getDetailAnime(this.$route.params.id);
     },
+
+    watch:{
+        animedata(){
+            this.check = true
+            commentVue
+        }
+    },
+    
     methods:{
         getDetailAnime(id){
-            console.log(id)
+            // console.log(id)
             axios.get(`/anime/${id}/full`).then((res)=>{
                 console.log(res.data)
                 this.animedata = res.data.data
