@@ -2,6 +2,7 @@
 
 ## Project setup
 ```
+download as zip or git clone
 cd frontend
 npm install
 ```
