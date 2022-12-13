@@ -44,9 +44,7 @@ def insert_com():
 
 @app.route('/getcomment/<id>', methods=['GET'])
 def get_com(id):
-    # result1 = request.args.get()
     cursor = mysql.connection.cursor()
-    #sql = ''' SELECT * FROM comment WHERE animeid = %s'''
     cursor.execute("SELECT * FROM comment WHERE animeid = %s", {id})
     result = cursor.fetchall()
     response = jsonify(result)
