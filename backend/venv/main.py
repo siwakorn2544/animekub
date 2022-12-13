@@ -12,7 +12,7 @@ MYSQLPASSWORD=os.getenv("MYSQLPASSWORD")
 MYSQL_DB=os.getenv("MYSQL_DB")
 
 # configuration
-DEBUG = True
+# DEBUG = True
 
 # instantiate the app
 app = Flask(__name__)
