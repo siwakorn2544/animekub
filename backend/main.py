@@ -30,7 +30,7 @@ CORS(app, resources={r'/*': {'origins': '*'}})
 
 @app.route('/')
 def ping_pong():
-    return {'msg':"NICEEEE"}
+    return "<h1>Hello world</h1>"
 
 
 @app.route('/postcomment', methods=['POST'])
