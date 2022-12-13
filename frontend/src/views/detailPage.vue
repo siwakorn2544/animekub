@@ -6,7 +6,7 @@
     >
         <b-row class="mt-5">
             <b-col class="col-9">
-                <h1>{{animedata.title}} ({{animedata.mal_id}})</h1>
+                <h1>{{animedata.title}}</h1>
                 <h6>{{animedata.title_english}}</h6>
                 <h6>{{animedata.title_japanese}}</h6>
             </b-col>
@@ -107,3 +107,20 @@ export default {
     }
 }
 </script>
+<style>
+.col-2 :hover {
+    transform: scale(1.3);
+    transition: all .5s;
+}
+.list-group :hover {
+ background-color: rgb(250, 219, 229);
+ color: rgb(56, 56, 255);
+ transform: scale(1.2);
+ transition: all .5s;
+}
+.col-9 :hover{
+    color: rgb(67, 55, 246);
+    transform: scale(1.04);
+    transition: all 0.5s;
+}
+</style>

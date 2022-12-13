@@ -6,7 +6,7 @@
                 <b-col class="mb-3 col-10">
                     <b-input class="mb-2" v-model="name" placeholder="Search ..."></b-input>
                 </b-col>
-                <b-col class=" col-2">
+                <b-col class=" col-1">
                     <b-button class="form-control" variant="outline-primary" @click="getAnimebyName()">Search</b-button>
                 </b-col>
             </b-row>
@@ -152,3 +152,11 @@ export default {
     }
 }
 </script>
+<style>
+.col-3 :hover{
+    transform: scale(1.05);
+    background-color: pink;
+    transition: all 0.5s;
+    color:rgb(68, 68, 199);
+}
+</style>
