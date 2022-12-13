@@ -1,5 +1,4 @@
-
-node_modules/*
+frontend/node_modules/*
 src/dtest.js
 backend/vercel
 backend/venv/bin
@@ -13,4 +12,4 @@ backend/Scripts
 *.env
 backend/pyvenv.cfg
 *.pyc
-frontend/node_modules/*
+node_modules/*
