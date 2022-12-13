@@ -114,9 +114,9 @@ export default {
 }
 .list-group :hover {
  background-color: rgb(250, 219, 229);
+ color: rgb(56, 56, 255);
  transform: scale(1.2);
  transition: all .5s;
- position: sticky;
 }
 .col-9 :hover{
     color: rgb(67, 55, 246);
