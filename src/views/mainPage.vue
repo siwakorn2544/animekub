@@ -157,6 +157,6 @@ export default {
     transform: scale(1.05);
     background-color: pink;
     transition: all 0.5s;
-    color:black;
+    color:rgb(68, 68, 199);
 }
 </style>
