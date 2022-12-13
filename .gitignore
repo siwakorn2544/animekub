@@ -1,5 +1,10 @@
 
 node_modules/*
 src/dtest.js
-backend/*
-
+backend/vercel
+backend/venv
+backend/lib
+backend/include
+backend/Scripts
+*.env
+backend/pyvenv.cfg
