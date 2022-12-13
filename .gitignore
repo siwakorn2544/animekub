@@ -12,3 +12,4 @@ backend/Scripts
 *.env
 backend/pyvenv.cfg
 *.pyc
+node_modules/*
