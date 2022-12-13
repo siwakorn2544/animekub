@@ -23,6 +23,7 @@ npm run lint
 ### Run backend python
 ```
 cd Backend
+pip install -r requirements.txt
 py main.py
 ```
 ### Customize configuration
