@@ -1,5 +1,5 @@
 from flask import Flask,request,jsonify
-# from flask_cors import CORS
+from flask_cors import CORS
 from flask_mysqldb import MySQL
 from dotenv import load_dotenv
 import os
@@ -26,7 +26,7 @@ app.config['MYSQL_DB'] = MYSQL_DB
 mysql = MySQL(app)
 # enable CORS
 # CORS(app, resources={r'/*': {'origins': '*'}})
-# CORS(app, resources={r'/*': {'origins': '*'}})
+CORS(app, resources={r'/*': {'origins': '*'}})
 
 @app.route('/')
 def ping_pong():
