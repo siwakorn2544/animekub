@@ -1,3 +1,3 @@
 [phases.setup]
 
-nixPkgs = ["...", "libmysqlclient-dev"]
+aptPkgs = ["...", "libstdc++6", "libmysqlclient-dev"] 
