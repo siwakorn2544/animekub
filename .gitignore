@@ -13,3 +13,4 @@ backend/Scripts
 *.env
 backend/pyvenv.cfg
 *.pyc
+frontend/node_modules/*
