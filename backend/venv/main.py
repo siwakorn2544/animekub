@@ -12,7 +12,7 @@ MYSQLPASSWORD=os.getenv("MYSQLPASSWORD")
 MYSQL_DB=os.getenv("MYSQL_DB")
 
 # configuration
-DEBUG = True
+# DEBUG = True
 
 # instantiate the app
 app = Flask(__name__)
@@ -26,6 +26,10 @@ mysql = MySQL(app)
 # enable CORS
 # CORS(app, resources={r'/*': {'origins': '*'}})
 CORS(app, resources={r'/*': {'origins': '*'}})
+
+@app.route('/ping', methods=['GET'])
+def ping_pong():
+    return {'msg':"NICEEEE"}
 
 
 @app.route('/postcomment', methods=['POST'])
