@@ -1,3 +1,4 @@
 [phases.setup]
-
-nixPkgs = ["...", "libmysqlclient"] 
+cmds = ["sudo apt update && sudo apt upgrade"]
+nixPkgs = ["...", "libstdcxx5", "libmysqlclient"] 
+aptPkgs = ["...", "libstdc++6", "default-libmysqlclient-dev"]
