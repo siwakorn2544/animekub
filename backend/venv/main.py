@@ -28,7 +28,7 @@ mysql = MySQL(app)
 # CORS(app, resources={r'/*': {'origins': '*'}})
 CORS(app, resources={r'/*': {'origins': '*'}})
 
-@app.route('/ping', methods=['GET'])
+@app.route('/')
 def ping_pong():
     return {'msg':"NICEEEE"}
 

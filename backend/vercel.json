@@ -2,13 +2,13 @@
 {
     "builds": [
       {
-        "src": "venv/main.py",
+        "src": "main.py",
         "use": "@vercel/python"
       }
     ],
     "routes": [
       {
-        "src": "/ping",
+        "src": "/(.*)",
         "dest": "api/main.py"
       }
     ]
