@@ -2,7 +2,11 @@
 node_modules/*
 src/dtest.js
 backend/vercel
-backend/venv
+backend/venv/bin
+backend/venv/lib
+backend/venv/include
+backend/venv/Scripts
+backend/venv/pyvenv.cfg
 backend/lib
 backend/include
 backend/Scripts
