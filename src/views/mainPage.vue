@@ -152,3 +152,11 @@ export default {
     }
 }
 </script>
+<style>
+.col-3 :hover{
+    transform: scale(1.05);
+    background-color: pink;
+    transition: all 0.5s;
+    color:black;
+}
+</style>
