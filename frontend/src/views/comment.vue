@@ -89,7 +89,7 @@ export default {
             this.name =""
         },
         getComment(animeid){
-            axios.get(`http://127.0.0.1:5000/getcomment/${animeid}`)
+            axios.get(`https://animekub-2i4f4rj7c-siwakorn2544.vercel.app/getcomment/44511/${animeid}`)
             .then((res)=>{
                 console.log("Heelooo",res.data)
                 this.dataComment = res.data

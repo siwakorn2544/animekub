@@ -6,10 +6,11 @@ import os
 
 load_dotenv()
 
-MYSQLHOST=os.getenv("MYSQLHOST")
-MYSQLUSER=os.getenv("MYSQLUSER")
-MYSQLPASSWORD=os.getenv("MYSQLPASSWORD")
-MYSQL_DB=os.getenv("MYSQL_DB")
+
+MYSQLHOST=os.environ.get('MYSQLHOST')
+MYSQLUSER=os.environ.get('MYSQLUSER')
+MYSQLPASSWORD=os.environ.get('MYSQLPASSWORD')
+MYSQL_DB=os.environ.get('MYSQL_DB')
 
 # configuration
 # DEBUG = True
